@@ -27,7 +27,7 @@ and calls `done` providing a user.
         clientSecret: EXAMPLE_CLIENT_SECRET,
         callbackURL: "http://localhost:3000/auth/example/callback"
       },
-      function(accessToken, refreshToken, profile, done) {
+      function(accessToken, refreshToken, instanceUrl, expirationDate, done) {
         User.findOrCreate({ exampleId: profile.id }, function (err, user) {
           return done(err, user);
         });
