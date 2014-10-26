@@ -1,47 +1,28 @@
-# passport-oauth2
+# passport-concur
 
-[![Build](https://travis-ci.org/jaredhanson/passport-oauth2.png)](https://travis-ci.org/jaredhanson/passport-oauth2)
-[![Coverage](https://coveralls.io/repos/jaredhanson/passport-oauth2/badge.png)](https://coveralls.io/r/jaredhanson/passport-oauth2)
-[![Quality](https://codeclimate.com/github/jaredhanson/passport-oauth2.png)](https://codeclimate.com/github/jaredhanson/passport-oauth2)
-[![Dependencies](https://david-dm.org/jaredhanson/passport-oauth2.png)](https://david-dm.org/jaredhanson/passport-oauth2)
-[![Tips](http://img.shields.io/gittip/jaredhanson.png)](https://www.gittip.com/jaredhanson/)
+Fork of passport-oauth2 to provide Concur-specific OAuth 2.0 authentication strategy for [Passport](http://passportjs.org/).
 
-General-purpose OAuth 2.0 authentication strategy for [Passport](http://passportjs.org/).
-
-This module lets you authenticate using OAuth 2.0 in your Node.js applications.
-By plugging into Passport, OAuth 2.0 authentication can be easily and
+This module lets you authenticate using Concur in your Node.js applications.
+By plugging into Passport, Concur's OAuth 2.0 authentication can be easily and
 unobtrusively integrated into any application or framework that supports
 [Connect](http://www.senchalabs.org/connect/)-style middleware, including
 [Express](http://expressjs.com/).
 
-Note that this strategy provides generic OAuth 2.0 support.  In many cases, a
-provider-specific strategy can be used instead, which cuts down on unnecessary
-configuration, and accommodates any provider-specific quirks.  See the
-[list](https://github.com/jaredhanson/passport/wiki/Strategies) for supported
-providers.
-
-Developers who need to implement authentication against an OAuth 2.0 provider
-that is not already supported are encouraged to sub-class this strategy.  If you
-choose to open source the new provider-specific strategy, please add it to the
-list so other people can find it.
-
 ## Install
 
-    $ npm install passport-oauth2
+    $ npm install passport-concur
 
 ## Usage
 
 #### Configure Strategy
 
-The OAuth 2.0 authentication strategy authenticates users using a third-party
-account and OAuth 2.0 tokens.  The provider's OAuth 2.0 endpoints, as well as
-the client identifer and secret, are specified as options.  The strategy
+The Concur authentication strategy authenticates users using a Concur
+account and OAuth 2.0 tokens.  The strategy
 requires a `verify` callback, which receives an access token and profile,
 and calls `done` providing a user.
 
-    passport.use(new OAuth2Strategy({
-        authorizationURL: 'https://www.example.com/oauth2/authorize',
-        tokenURL: 'https://www.example.com/oauth2/token',
+    passport.use(new ConcurStrategy({
+        consumerKey: EXAMPLE_CONSUMER_KEY,
         clientID: EXAMPLE_CLIENT_ID,
         clientSecret: EXAMPLE_CLIENT_SECRET,
         callbackURL: "http://localhost:3000/auth/example/callback"
@@ -55,27 +36,21 @@ and calls `done` providing a user.
 
 #### Authenticate Requests
 
-Use `passport.authenticate()`, specifying the `'oauth2'` strategy, to
+Use `passport.authenticate()`, specifying the `'concur'` strategy, to
 authenticate requests.
 
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
     app.get('/auth/example',
-      passport.authenticate('oauth2'));
+      passport.authenticate('concur'));
 
     app.get('/auth/example/callback',
-      passport.authenticate('oauth2', { failureRedirect: '/login' }),
+      passport.authenticate('concur', { failureRedirect: '/login' }),
       function(req, res) {
         // Successful authentication, redirect home.
         res.redirect('/');
       });
-
-## Related Modules
-
-- [passport-oauth1](https://github.com/jaredhanson/passport-oauth1) — OAuth 1.0 authentication strategy
-- [passport-http-bearer](https://github.com/jaredhanson/passport-http-bearer) — Bearer token authentication strategy for APIs
-- [OAuth2orize](https://github.com/jaredhanson/oauth2orize) — OAuth 2.0 authorization server toolkit
 
 ## Tests
 
@@ -84,10 +59,8 @@ application:
 
 ## Credits
 
-  - [Jared Hanson](http://github.com/jaredhanson)
+  - Forked from [passport-oauth2](https://github.com/jaredhanson/passport-github) by [Jared Hanson](https://github.com/jaredhanson)
 
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2011-2014 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
