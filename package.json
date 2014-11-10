@@ -1,6 +1,6 @@
 {
   "name": "passport-concur",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Concur authentication strategy for Passport.",
   "keywords": [
     "passport",
@@ -14,8 +14,8 @@
     "concur"
   ],
   "author": {
-    "name": "Simon Guest",
-    "url": "http://github.com/simonguest"
+    "name": "Concur",
+    "url": "http://developer.concur.com"
   },
   "repository": {
     "type": "git",
